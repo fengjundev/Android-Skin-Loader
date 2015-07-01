@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="VideoTraining_custom_rules" default="debug">
+    <property name="customlib.out"   value="{source.absolute.dir}/../../../../libout" />
+    <property name="customapk.out"   value="{source.absolute.dir}/../../../../apk" />
+    <property name="local.jar.files.dir"   value="{source.absolute.dir}/../local_jar_files" />
+    <property name="support.v4.file" value="${sdk.dir}/extras/android/support/v4/android-support-v4.jar" />
+    <property name="ndktools.dir" value="${myenv.NDK_HOME}" />
+    <property name="ndkbuild" value="${myenv.NDK_HOME}/ndk-build${cmd}" />
+    <property name="jni.dir" value="jni" />
+    <property name="jni.absolute.dir" location="${jni.dir}" />
+    
+    <property environment="myenv" />
+    <condition property="cmd" value=".cmd" else=""><os family="windows" /></condition>
+    
+    <target name="-pre-compile" description="pre compile"> </target>
+    
+    <target name="-pre-bbk-init" description="拷贝 本工程 需要的 jar包 .so, 到libs目录下">
+        
+ 	<delete dir="${source.absolute.dir}/../libs" />
+        <delete dir="${source.absolute.dir}/../bin" />
+        <delete dir="${source.absolute.dir}/../gen" />
+        <delete dir="${source.absolute.dir}/../obj" />	
+
+	<!-- 创建目标目录-->
+
+	<mkdir dir="${source.absolute.dir}/../libs" />
+	<mkdir dir="${source.absolute.dir}/../libs/mips" />
+	<mkdir dir="${source.absolute.dir}/../libs/x86" />
+	<mkdir dir="${source.absolute.dir}/../libs/armeabi" />
+	<mkdir dir="${source.absolute.dir}/../libs/armeabi-v7a" />
+	
+	<!-- 拷贝需要的jar到libs目录 -->
+			<copy file="${support.v4.file}" todir="${source.absolute.dir}/../libs" />
+			<copy file="${customlib.out}/BFC_BehaviorCollector.jar"  todir="${source.absolute.dir}/../libs" />
+			<copy file="${customlib.out}/BFC_VersionManager.jar"  todir="${source.absolute.dir}/../libs" />
+                        <copy file="${customlib.out}/BFC_Utils.jar"  todir ="${source.absolute.dir}/../libs" />
+			<copy file="${customlib.out}/gson-2.2.2.jar" todir="${source.absolute.dir}/../libs" />
+			<copy file="${customlib.out}/readbbksn.jar"  todir="${source.absolute.dir}/../libs" />	
+			<copy file="${local.jar.files.dir}/libammsdk.jar" todir="${source.absolute.dir}/../libs" />
+			<copy file="${local.jar.files.dir}/mta-sdk-1.6.2.jar"  todir="${source.absolute.dir}/../libs" />	
+			<copy file="${local.jar.files.dir}/open_sdk_r4889.jar" todir="${source.absolute.dir}/../libs" />
+			<copy file="${local.jar.files.dir}/weibosdkcore_v3.0.1.jar"  todir="${source.absolute.dir}/../libs" />
+			<copy file="${local.jar.files.dir}/mips/libweibosdkcore.so"  todir="${source.absolute.dir}/../libs/mips" />	
+			<copy file="${local.jar.files.dir}/x86/libweibosdkcore.so"  todir="${source.absolute.dir}/../libs/x86" />	
+			<copy file="${local.jar.files.dir}/armeabi/libweibosdkcore.so"  todir="${source.absolute.dir}/../libs/armeabi" />	
+			<copy file="${local.jar.files.dir}/armeabi-v7a/libweibosdkcore.so"  todir="${source.absolute.dir}/../libs/armeabi-v7a" />				
+            <copy file="${customlib.out}/universal-image-loader-1.9.2-with-sources.jar"  todir="${source.absolute.dir}/../libs" /> 
+			
+    </target>
+    
+  <target name="-post-build" description="拷贝 本工程 apk 到 目录下">
+  
+  <mkdir dir="${customapk.out}" /> 
+     		<copy file="${out.absolute.dir}/${ant.project.name}-debug.apk" tofile="${customapk.out}/${ant.project.name}.apk" /> 
+  </target>
+</project>

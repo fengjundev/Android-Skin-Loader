@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg_image" >
+
+    <include layout="@layout/include_title_bar" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text=" 设置皮肤 "
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        android:background="@color/app_btn_bg_color"/>
+    
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:text=" 恢复默认 "
+        android:layout_below="@id/btn"
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        android:background="@color/app_btn_bg_color"/>
+    
+</RelativeLayout>

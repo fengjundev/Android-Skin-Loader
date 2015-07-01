@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="app_name">AppForum</string>
+	<string name="wstudy_comment_danmaku_tip">哎呀！您的网络出错了，快去检查网络设置吧！</string>
+</resources>

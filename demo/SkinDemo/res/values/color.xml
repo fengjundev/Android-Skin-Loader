@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_bg_color">#1abc9c</color>
+    
+    <color name="title_bar_bg">#eb974e</color>
+    
+    <color name="app_btn_bg_color">#eb974e</color>
+    
+</resources>   

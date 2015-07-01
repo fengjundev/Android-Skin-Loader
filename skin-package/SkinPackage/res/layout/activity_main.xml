@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg_color" >
+
+    <include layout="@layout/include_title_bar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text=" 我是皮肤包 "
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        android:background="@color/app_btn_bg_color"/>
+    
+</RelativeLayout>
