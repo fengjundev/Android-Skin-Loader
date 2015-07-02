@@ -12,14 +12,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import cn.feng.skin.demo.R;
-import cn.feng.skin.demo.app.SkinApplication;
 import cn.feng.skin.manager.listener.ILoaderListener;
 import cn.feng.skin.manager.listener.ISkinUpdateObserver;
-import cn.feng.skin.manager.manager.SkinManager;
+import cn.feng.skin.manager.loader.SkinManager;
 
 public class MainActivity extends Activity implements ISkinUpdateObserver{
 	
-	private static final String 	SKIN_DIR = Environment.getExternalStorageDirectory() + File.separator + "SkinPackage.apk";
+	private static final String 	SKIN_NAME = "SkinPackage.skin";
+	private static final String 	SKIN_DIR  = Environment.getExternalStorageDirectory() + File.separator + SKIN_NAME;
 	
 	private RelativeLayout 			rootLayout;
 	private RelativeLayout 			titleBar;

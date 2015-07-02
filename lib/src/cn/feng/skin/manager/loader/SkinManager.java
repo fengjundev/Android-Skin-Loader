@@ -1,4 +1,4 @@
-package cn.feng.skin.manager.manager;
+package cn.feng.skin.manager.loader;
 
 import java.io.File;
 import java.lang.reflect.Method;
