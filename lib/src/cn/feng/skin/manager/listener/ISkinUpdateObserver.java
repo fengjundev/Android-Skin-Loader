@@ -9,5 +9,5 @@ import android.content.res.Resources;
  * @author fengjun
  */
 public interface ISkinUpdateObserver {
-	void onThemeUpdate(String skinPackageName, Resources skinResources);	
+	void onThemeUpdate();	
 }

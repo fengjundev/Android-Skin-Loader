@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements ISkinUpdateObserver{
 	private RelativeLayout 			titleBar;
 	private Button 					editSkinBtn;
 	private Button 					defaultSkinBtn;
-	private String 					presentTheme			=  "dafault";
 	
 	
 	@Override
@@ -38,9 +37,8 @@ public class MainActivity extends Activity implements ISkinUpdateObserver{
 	}
 
 	private void initTheme() {
-		if(SkinManager.getInstance(this).getSkinResource() != null){
-			onThemeUpdate(SkinManager.getInstance(this).getSkinPackageName(),
-					SkinManager.getInstance(this).getSkinResource());
+		if(SkinManager.getInstance(this).getResources() != null){
+			onThemeUpdate();
 		}else{
 			Log.d("yzy", "no resource");
 		}
@@ -109,27 +107,12 @@ public class MainActivity extends Activity implements ISkinUpdateObserver{
 	}
 
 	@Override
-	public void onThemeUpdate(String skinPackageName, Resources skinResources) {
-//		if(presentTheme.equals(SkinManager.getInstance(this).getSkinPath())){
-//			return;
-//		}
-		
-		if(rootLayout != null)  
-        {  
-			try {
-				Resources mResource = skinResources;
-				String packageName = skinPackageName;
-				int id1 = mResource.getIdentifier("app_bg_image", "drawable", packageName);
-				rootLayout.setBackgroundDrawable(mResource.getDrawable(id1));
-				int id2 = mResource.getIdentifier("title_bar_bg", "color", packageName);
-				titleBar.setBackgroundColor(mResource.getColor(id2));
-				int id3 = mResource.getIdentifier("app_btn_bg_color", "color", packageName);
-				editSkinBtn.setBackgroundColor(mResource.getColor(id3));
-				defaultSkinBtn.setBackgroundColor(mResource.getColor(id3));
-				presentTheme = SkinManager.getInstance(this).getSkinPath();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-        }
+	public void onThemeUpdate() {
+		if(rootLayout == null) return;
+		SkinManager mSkinManager = SkinManager.getInstance(this);
+		rootLayout.setBackgroundDrawable(mSkinManager.getDrawable(R.drawable.app_bg_image));
+		titleBar.setBackgroundColor(mSkinManager.getColor(R.color.title_bar_bg));
+		editSkinBtn.setBackgroundColor(mSkinManager.getColor(R.color.app_btn_bg_color));
+		defaultSkinBtn.setBackgroundColor(mSkinManager.getColor(R.color.app_btn_bg_color));
 	}
 }

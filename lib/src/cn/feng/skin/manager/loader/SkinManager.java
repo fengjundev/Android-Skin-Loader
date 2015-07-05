@@ -10,8 +10,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.text.TextUtils;
+import android.util.Log;
 import cn.feng.skin.manager.config.SkinConfig;
 import cn.feng.skin.manager.listener.ILoaderListener;
 import cn.feng.skin.manager.listener.ISkinSubject;
@@ -53,8 +55,9 @@ public class SkinManager implements ISkinSubject{
 	private List<ISkinUpdateObserver>   skinObservers;
 	private Context 					context;
 	private String 						skinPackageName;
-	private Resources 					skinResources;
+	private Resources 					mResources;
 	private String 						skinPath;
+	private boolean						isDefaultSkin			= false;
 	
 	public String getSkinPath() {
 		return skinPath;
@@ -75,8 +78,8 @@ public class SkinManager implements ISkinSubject{
 		return skinPackageName;
 	}
 	
-	public Resources getSkinResource(){
-		return skinResources;
+	public Resources getResources(){
+		return mResources;
 	}
 	
 	private SkinManager(Context mContext) {
@@ -85,8 +88,9 @@ public class SkinManager implements ISkinSubject{
 	
 	public void restoreDefaultTheme(){
 		SkinConfig.saveSkinPath(context, SkinConfig.DEFALT_SKIN);
-		skinResources = null;
-		notifySkinDefault();
+		isDefaultSkin = true;
+		mResources = context.getResources();
+		notifySkinUpdate();
 	}
 
 	public void load(){
@@ -140,7 +144,7 @@ public class SkinManager implements ISkinSubject{
 						SkinConfig.saveSkinPath(context, skinPkgPath);
 						
 						skinPath = skinPkgPath;
-						
+						isDefaultSkin = false;
 						return skinResource;
 					}
 					return null;
@@ -151,19 +155,20 @@ public class SkinManager implements ISkinSubject{
 			};
 
 			protected void onPostExecute(Resources result) {
-				skinResources = result;
+				mResources = result;
 
-				if (skinResources != null) {
+				if (mResources != null) {
 					if (callback != null) callback.onSuccess();
 					notifySkinUpdate();
 				}else{
+					isDefaultSkin = true;
 					if (callback != null) callback.onFailed();
 				}
 			};
 
 		}.execute(skinPackagePath);
 	}
-
+	
 	@Override
 	public void attach(ISkinUpdateObserver observer) {
 		if(skinObservers == null){
@@ -186,15 +191,48 @@ public class SkinManager implements ISkinSubject{
 	public void notifySkinUpdate() {
 		if(skinObservers == null) return;
 		for(ISkinUpdateObserver observer : skinObservers){
-			observer.onThemeUpdate(skinPackageName, skinResources);
+			observer.onThemeUpdate();
 		}
 	}
-
-	@Override
-	public void notifySkinDefault() {
-		if(skinObservers == null) return;
-		for(ISkinUpdateObserver observer : skinObservers){
-			observer.onThemeUpdate(context.getPackageName(), context.getResources());
+	
+	public int getColor(int resId){
+		int originColor = context.getResources().getColor(resId);
+		if(mResources == null || isDefaultSkin){
+			return originColor;
 		}
+		
+		String resName = context.getResources().getResourceEntryName(resId);
+		
+		int trueResId = mResources.getIdentifier(resName, "color", skinPackageName);
+		int trueColor = 0;
+		
+		try{
+			trueColor = mResources.getColor(trueResId);
+		}catch(NotFoundException e){
+			e.printStackTrace();
+			trueColor = originColor;
+		}
+		
+		return trueColor;
+	}
+	
+	public Drawable getDrawable(int resId){
+		Drawable originDrawable = context.getResources().getDrawable(resId);
+		if(mResources == null || isDefaultSkin){
+			return originDrawable;
+		}
+		String resName = context.getResources().getResourceEntryName(resId);
+		
+		int trueResId = mResources.getIdentifier(resName, "drawable", skinPackageName);
+		
+		Drawable trueDrawable = null;
+		try{
+			trueDrawable = mResources.getDrawable(trueResId);
+		}catch(NotFoundException e){
+			e.printStackTrace();
+			trueDrawable = originDrawable;
+		}
+		
+		return trueDrawable;
 	}
 }
