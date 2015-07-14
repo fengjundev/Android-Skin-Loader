@@ -3,7 +3,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_bg_image" >
+    android:background="?attr/app_bg" >
 
     <include layout="@layout/include_title_bar" />
 
@@ -15,7 +15,7 @@
         android:text=" 设置皮肤 "
         android:textColor="#ffffff"
         android:textSize="26sp"
-        android:background="@color/app_btn_bg_color"/>
+        android:background="?attr/button_color"/>
     
     <Button
         android:id="@+id/btn2"
@@ -27,6 +27,6 @@
         android:layout_below="@id/btn"
         android:textColor="#ffffff"
         android:textSize="26sp"
-        android:background="@color/app_btn_bg_color"/>
+        android:background="?attr/button_color"/>
     
 </RelativeLayout>

@@ -3,7 +3,6 @@ package cn.feng.skin.demo.activity;
 import java.io.File;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -13,10 +12,11 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import cn.feng.skin.demo.R;
 import cn.feng.skin.manager.listener.ILoaderListener;
-import cn.feng.skin.manager.listener.ISkinUpdateObserver;
+import cn.feng.skin.manager.listener.ISkinUpdate;
+import cn.feng.skin.manager.loader.SkinInflaterFactory;
 import cn.feng.skin.manager.loader.SkinManager;
 
-public class MainActivity extends Activity implements ISkinUpdateObserver{
+public class MainActivity extends Activity implements ISkinUpdate{
 	
 	private static final String 	SKIN_NAME = "SkinPackage.skin";
 	private static final String 	SKIN_DIR  = Environment.getExternalStorageDirectory() + File.separator + SKIN_NAME;
@@ -27,8 +27,14 @@ public class MainActivity extends Activity implements ISkinUpdateObserver{
 	private Button 					defaultSkinBtn;
 	
 	
+	SkinInflaterFactory mSkinInflaterFactory;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		mSkinInflaterFactory = new SkinInflaterFactory();
+		getLayoutInflater().setFactory(mSkinInflaterFactory);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		

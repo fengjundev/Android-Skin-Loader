@@ -8,6 +8,6 @@ import android.content.res.Resources;
  * 
  * @author fengjun
  */
-public interface ISkinUpdateObserver {
+public interface ISkinUpdate {
 	void onThemeUpdate();	
 }

@@ -16,8 +16,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import cn.feng.skin.manager.config.SkinConfig;
 import cn.feng.skin.manager.listener.ILoaderListener;
-import cn.feng.skin.manager.listener.ISkinSubject;
-import cn.feng.skin.manager.listener.ISkinUpdateObserver;
+import cn.feng.skin.manager.listener.ISkinLoader;
+import cn.feng.skin.manager.listener.ISkinUpdate;
 
 /**
  * Skin Manager Instance
@@ -28,11 +28,11 @@ import cn.feng.skin.manager.listener.ISkinUpdateObserver;
  * </ul>
  * <ul>
  * <strong>attach a listener (Activity or fragment) to SkinManager</strong>
- * <li> {@link #onAttach(ISkinUpdateObserver observer)} </li>
+ * <li> {@link #onAttach(ISkinUpdate observer)} </li>
  * </ul>
  * <ul>
  * <strong>detach a listener (Activity or fragment) to SkinManager</strong>
- * <li> {@link #detach(ISkinUpdateObserver observer)} </li>
+ * <li> {@link #detach(ISkinUpdate observer)} </li>
  * </ul>
  * <ul>
  * <strong>load latest theme </strong>
@@ -47,12 +47,12 @@ import cn.feng.skin.manager.listener.ISkinUpdateObserver;
  * 
  * @author fengjun
  */
-public class SkinManager implements ISkinSubject{
+public class SkinManager implements ISkinLoader{
 	
 	private static Object    			synchronizedLock    	= new Object();
 	private static SkinManager 			instance;
 	
-	private List<ISkinUpdateObserver>   skinObservers;
+	private List<ISkinUpdate>   skinObservers;
 	private Context 					context;
 	private String 						skinPackageName;
 	private Resources 					mResources;
@@ -170,9 +170,9 @@ public class SkinManager implements ISkinSubject{
 	}
 	
 	@Override
-	public void attach(ISkinUpdateObserver observer) {
+	public void attach(ISkinUpdate observer) {
 		if(skinObservers == null){
-			skinObservers = new ArrayList<ISkinUpdateObserver>();
+			skinObservers = new ArrayList<ISkinUpdate>();
 		}
 		if(!skinObservers.contains(skinObservers)){
 			skinObservers.add(observer);
@@ -180,7 +180,7 @@ public class SkinManager implements ISkinSubject{
 	}
 
 	@Override
-	public void detach(ISkinUpdateObserver observer) {
+	public void detach(ISkinUpdate observer) {
 		if(skinObservers == null) return;
 		if(skinObservers.contains(observer)){
 			skinObservers.remove(observer);
@@ -190,7 +190,7 @@ public class SkinManager implements ISkinSubject{
 	@Override
 	public void notifySkinUpdate() {
 		if(skinObservers == null) return;
-		for(ISkinUpdateObserver observer : skinObservers){
+		for(ISkinUpdate observer : skinObservers){
 			observer.onThemeUpdate();
 		}
 	}

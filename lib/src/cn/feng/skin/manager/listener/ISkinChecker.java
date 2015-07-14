@@ -2,7 +2,7 @@ package cn.feng.skin.manager.listener;
 
 import android.content.Context;
 
-public interface ISkinVerification {
+public interface ISkinChecker {
 	
 	/**
 	 * Check whether the skin is exits or legal

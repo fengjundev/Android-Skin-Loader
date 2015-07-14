@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/title_bar_layout"
-    android:background="@color/title_bar_bg"
+    android:background="?attr/titlebar_color"
     android:layout_height="60dp" >
 
     <TextView
