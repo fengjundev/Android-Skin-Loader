@@ -1,9 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/app_bg" >
+    skin:enable="true"
+    android:background="@drawable/app_bg_image" >
 
     <include layout="@layout/include_title_bar" />
 
@@ -15,7 +17,8 @@
         android:text=" 设置皮肤 "
         android:textColor="#ffffff"
         android:textSize="26sp"
-        android:background="?attr/button_color"/>
+        skin:enable="true"
+        android:background="@color/app_btn_bg_color"/>
     
     <Button
         android:id="@+id/btn2"
@@ -27,6 +30,7 @@
         android:layout_below="@id/btn"
         android:textColor="#ffffff"
         android:textSize="26sp"
-        android:background="?attr/button_color"/>
+        skin:enable="true"
+        android:background="@color/app_btn_bg_color"/>
     
 </RelativeLayout>

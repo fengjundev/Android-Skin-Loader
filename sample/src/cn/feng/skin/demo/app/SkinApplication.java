@@ -7,6 +7,8 @@ public class SkinApplication extends Application {
 	
 	public void onCreate() {
 		super.onCreate();
-		SkinManager.getInstance(this).load();
+		
+		SkinManager.getInstance().init(this);
+		SkinManager.getInstance().load();
 	}
 }

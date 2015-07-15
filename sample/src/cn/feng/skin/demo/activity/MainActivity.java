@@ -2,7 +2,6 @@ package cn.feng.skin.demo.activity;
 
 import java.io.File;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -11,12 +10,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import cn.feng.skin.demo.R;
+import cn.feng.skin.manager.base.SkinPluginActivity;
 import cn.feng.skin.manager.listener.ILoaderListener;
-import cn.feng.skin.manager.listener.ISkinUpdate;
-import cn.feng.skin.manager.loader.SkinInflaterFactory;
 import cn.feng.skin.manager.loader.SkinManager;
 
-public class MainActivity extends Activity implements ISkinUpdate{
+public class MainActivity extends SkinPluginActivity{
 	
 	private static final String 	SKIN_NAME = "SkinPackage.skin";
 	private static final String 	SKIN_DIR  = Environment.getExternalStorageDirectory() + File.separator + SKIN_NAME;
@@ -26,28 +24,12 @@ public class MainActivity extends Activity implements ISkinUpdate{
 	private Button 					editSkinBtn;
 	private Button 					defaultSkinBtn;
 	
-	
-	SkinInflaterFactory mSkinInflaterFactory;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
-		mSkinInflaterFactory = new SkinInflaterFactory();
-		getLayoutInflater().setFactory(mSkinInflaterFactory);
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
 		initView();
-		initTheme();
-	}
-
-	private void initTheme() {
-		if(SkinManager.getInstance(this).getResources() != null){
-			onThemeUpdate();
-		}else{
-			Log.d("yzy", "no resource");
-		}
 	}
 
 	private void initView() {
@@ -73,52 +55,42 @@ public class MainActivity extends Activity implements ISkinUpdate{
 	}
 	
 	protected void onSkinResetClick() {
-		SkinManager.getInstance(this).restoreDefaultTheme();
+		SkinManager.getInstance().restoreDefaultTheme();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		
-		SkinManager.getInstance(this).attach(this);
+		SkinManager.getInstance().attach(this);
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		SkinManager.getInstance(this).detach(this);
+		SkinManager.getInstance().detach(this);
 	}
 
 	private void onSkinSetClick() {
 		File skin = new File(SKIN_DIR);
 
-		SkinManager.getInstance(MainActivity.this).load(
+		SkinManager.getInstance().load(
 				skin.getAbsolutePath(), new ILoaderListener() {
 					@Override
 					public void onStart() {
-						Log.d("yzy", "startloadSkin");
+						Log.d("attr", "startloadSkin");
 					}
 
 					@Override
 					public void onSuccess() {
-						Log.d("yzy", "loadSkinSuccess");
+						Log.d("attr", "loadSkinSuccess");
 					}
 
 					@Override
 					public void onFailed() {
-						Log.d("yzy", "loadSkinFail");
+						Log.d("attr", "loadSkinFail");
 					}
 				});
-	}
-
-	@Override
-	public void onThemeUpdate() {
-		if(rootLayout == null) return;
-		SkinManager mSkinManager = SkinManager.getInstance(this);
-		rootLayout.setBackgroundDrawable(mSkinManager.getDrawable(R.drawable.app_bg_image));
-		titleBar.setBackgroundColor(mSkinManager.getColor(R.color.title_bar_bg));
-		editSkinBtn.setBackgroundColor(mSkinManager.getColor(R.color.app_btn_bg_color));
-		defaultSkinBtn.setBackgroundColor(mSkinManager.getColor(R.color.app_btn_bg_color));
 	}
 }

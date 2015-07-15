@@ -1,8 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:id="@+id/title_bar_layout"
-    android:background="?attr/titlebar_color"
+    skin:enable="true"
+    android:background="@color/title_bar_bg"
     android:layout_height="60dp" >
 
     <TextView

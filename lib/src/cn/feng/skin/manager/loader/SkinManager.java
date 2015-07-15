@@ -49,25 +49,30 @@ import cn.feng.skin.manager.listener.ISkinUpdate;
  */
 public class SkinManager implements ISkinLoader{
 	
+	private static final String 		NOT_INIT_ERROR			= "SkinManager MUST init with Context first";
 	private static Object    			synchronizedLock    	= new Object();
 	private static SkinManager 			instance;
 	
-	private List<ISkinUpdate>   skinObservers;
+	private List<ISkinUpdate>   		skinObservers;
 	private Context 					context;
 	private String 						skinPackageName;
 	private Resources 					mResources;
 	private String 						skinPath;
 	private boolean						isDefaultSkin			= false;
 	
+	public boolean isExternalSkin(){
+		return !isDefaultSkin && mResources != null;
+	}
+	
 	public String getSkinPath() {
 		return skinPath;
 	}
 
-	public static SkinManager getInstance(Context mContext) {
+	public static SkinManager getInstance() {
 		if (instance == null) {
 			synchronized (synchronizedLock) {
 				if (instance == null){
-					instance = new SkinManager(mContext.getApplicationContext());
+					instance = new SkinManager();
 				}
 			}
 		}
@@ -82,8 +87,11 @@ public class SkinManager implements ISkinLoader{
 		return mResources;
 	}
 	
-	private SkinManager(Context mContext) {
-		this.context = mContext;
+	private SkinManager() {
+	}
+	
+	public void init(Context ctx){
+		context = ctx.getApplicationContext();
 	}
 	
 	public void restoreDefaultTheme(){
