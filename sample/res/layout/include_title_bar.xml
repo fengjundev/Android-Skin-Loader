@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="标题栏"
-        android:textSize="20sp" />
+        android:text="请将red.skin文件置于/mnt/sdcard根目录"
+        android:textSize="15sp" />
 
 </RelativeLayout>

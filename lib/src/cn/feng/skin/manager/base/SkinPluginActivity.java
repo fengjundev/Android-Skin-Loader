@@ -42,8 +42,7 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 	public void onThemeUpdate() {
 		if(!isResponseOnSkinChanging) return;
 		
-		L.i("_________________________________________________________");
-		L.w("call onThemeUpdate()"); 
+		L.e("call onThemeUpdate()"); 
 		
 		mSkinInflaterFactory.applySkin();
 	}

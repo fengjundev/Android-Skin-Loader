@@ -13,14 +13,13 @@ import cn.feng.skin.demo.R;
 import cn.feng.skin.manager.base.SkinPluginActivity;
 import cn.feng.skin.manager.listener.ILoaderListener;
 import cn.feng.skin.manager.loader.SkinManager;
+import cn.feng.skin.manager.util.L;
 
 public class MainActivity extends SkinPluginActivity{
 	
-	private static final String 	SKIN_NAME = "SkinPackage.skin";
+	private static final String 	SKIN_NAME = "red.skin";
 	private static final String 	SKIN_DIR  = Environment.getExternalStorageDirectory() + File.separator + SKIN_NAME;
 	
-	private RelativeLayout 			rootLayout;
-	private RelativeLayout 			titleBar;
 	private Button 					editSkinBtn;
 	private Button 					defaultSkinBtn;
 	
@@ -30,11 +29,11 @@ public class MainActivity extends SkinPluginActivity{
 		setContentView(R.layout.activity_main);
 		
 		initView();
+		
+		L.e("DONE WITH ON CREATE");
 	}
 
 	private void initView() {
-		rootLayout = (RelativeLayout) findViewById(R.id.root_layout);
-		titleBar = (RelativeLayout) findViewById(R.id.title_bar_layout);
 		editSkinBtn = (Button) findViewById(R.id.btn);
 		defaultSkinBtn = (Button) findViewById(R.id.btn2);
 		
