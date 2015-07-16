@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="app_bg_color">#5399c7</color>
-    
-    <color name="title_bar_bg">#ca574b</color>
-    
-    <color name="app_btn_bg_color">#ca574b</color>
-    
-</resources>   
+    <color name="color_app_bg">#003333</color>
+    <color name="color_title_bar_bg">#006666</color>
+    <color name="color_title_bar_text">#CCFFFF</color>
+    <color name="color_new_item_bg">#003333</color>
+    <color name="color_new_item_title">#ffffff</color>
+    <color name="color_new_item_synopsis">#CCFFCC</color>
+    <color name="color_new_list_divider">#336633</color>
+
+    <drawable name="color_news_item_normal">#003333</drawable>
+    <drawable name="color_news_item_pressed">#11ffffff</drawable>
+
+</resources>

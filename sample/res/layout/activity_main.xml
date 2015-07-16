@@ -4,33 +4,22 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    skin:enable="true"
-    android:background="@drawable/app_bg_image" >
+    skin:enable="true" 
+    android:background="@color/color_app_bg" >
 
-    <include layout="@layout/include_title_bar" />
+    <include
+        android:id="@+id/title_bar_layout"
+        layout="@layout/include_main_title_bar" />
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text=" 设置皮肤 "
-        android:textColor="#ffffff"
-        android:textSize="26sp"
-        skin:enable="true"
-        android:background="@color/app_btn_bg_color"/>
-    
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_centerInParent="true"
-        android:text=" 恢复默认 "
-        android:layout_below="@id/btn"
-        android:textColor="#ffffff"
-        android:textSize="26sp"
-        skin:enable="true"
-        android:background="@color/app_btn_bg_color"/>
-    
+    <ListView
+        android:id="@+id/news_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_bar_layout"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_new_list_divider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/news_item_selector"
+        android:scrollbars="none" />
+
 </RelativeLayout>

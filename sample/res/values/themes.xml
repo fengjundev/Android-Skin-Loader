@@ -1,9 +1,0 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <style name="AppTheme" parent="android:Theme.Light.NoTitleBar">
-        <item name="button_color">@color/app_btn_bg_color</item>
-        <item name="titlebar_color">@color/title_bar_bg</item>
-        <item name="app_bg">@drawable/app_bg_image</item>
-    </style>
-
-</resources>

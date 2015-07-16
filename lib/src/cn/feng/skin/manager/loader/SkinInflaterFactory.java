@@ -36,7 +36,10 @@ public class SkinInflaterFactory implements Factory {
 	public View onCreateView(String name, Context context, AttributeSet attrs) {
 		// if this is NOT enable to be skined , simplly skip it 
 		boolean isSkinEnable = attrs.getAttributeBooleanValue(SkinConfig.NAMESPACE, SkinConfig.ATTR_SKIN_ENABLE, false);
-        if (!isSkinEnable) return null;
+        if (!isSkinEnable){
+        	L.e(name + " is Not skin able , skin it !"); 
+        	return null;
+        }
 		
 		View view = createView(context, name, attrs);
 		
@@ -157,6 +160,7 @@ public class SkinInflaterFactory implements Factory {
 		if(ListUtils.isEmpty(mSkinItems)) return;
 		
 		for(SkinItem si : mSkinItems){
+			if(si.view == null) continue;
 			si.apply();
 		}
 	}

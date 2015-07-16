@@ -39,6 +39,20 @@
             </intent-filter>
         </activity>
         
+       <activity
+            android:name="cn.feng.skin.demo.activity.DetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+        </activity>
+        
+       <activity
+            android:name="cn.feng.skin.demo.activity.SettingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+        </activity>
+        
     </application>
 
 </manifest>

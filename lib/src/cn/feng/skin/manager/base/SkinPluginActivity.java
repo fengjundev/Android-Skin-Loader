@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import cn.feng.skin.manager.listener.ISkinUpdate;
 import cn.feng.skin.manager.loader.SkinInflaterFactory;
+import cn.feng.skin.manager.loader.SkinManager;
 import cn.feng.skin.manager.util.L;
 
 /**
@@ -31,7 +32,27 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 		getLayoutInflater().setFactory(mSkinInflaterFactory);
 	}
 	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		SkinManager.getInstance().attach(this);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		SkinManager.getInstance().detach(this);
+	}
+	
+	/**
+	 * dynamic add a skin view 
+	 * 
+	 * @param view
+	 * @param attrName
+	 * @param attrValueResId
+	 */
 	protected void addNewSkinWidget(View view, String attrName, int attrValueResId){	
+		// developing ... 
 	}
 	
 	final protected void enableResponseOnSkinChanging(boolean enable){

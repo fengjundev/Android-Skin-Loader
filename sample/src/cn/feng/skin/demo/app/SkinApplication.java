@@ -8,6 +8,10 @@ public class SkinApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		
+		initSkinLoader();
+	}
+
+	private void initSkinLoader() {
 		SkinManager.getInstance().init(this);
 		SkinManager.getInstance().load();
 	}
