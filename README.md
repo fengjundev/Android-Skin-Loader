@@ -19,7 +19,7 @@
 		SkinManager.getInstance().init(this);
 		SkinManager.getInstance().load();
 	}
-    }
+}
     ```
 
 2. tag the view that need to change skin in layout xml files
