@@ -8,7 +8,7 @@
 
 ## Usage
 
-1. init skin loader in `Application`, must call `SkinManager.getInstance().init(this);` first 
+1. init skin loader in `Application`, must call `SkinManager.getInstance().init(this)` first 
 
     ```java
     public class SkinApplication extends Application {
