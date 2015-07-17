@@ -1,6 +1,5 @@
 package cn.feng.skin.manager.listener;
 
-import android.content.res.Resources;
 
 /**
  * Call back when theme has changed </br>

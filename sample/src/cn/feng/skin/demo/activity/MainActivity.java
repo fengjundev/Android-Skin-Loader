@@ -80,7 +80,7 @@ public class MainActivity extends SkinPluginActivity{
 	}
 	
 	private class NewsAdapter extends CommonBaseAdapter<News>{
-
+ 
 		public NewsAdapter(Context context, List<News> mDatas) {
 			super(context, mDatas, new int[]{R.layout.item_news_title});
 		}

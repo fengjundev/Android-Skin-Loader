@@ -9,20 +9,21 @@ public class AttrFactory {
 	private static final String DIVIDER = "divider";
 	
 	public static SkinAttr get(String attrName, int attrValueRefId, String attrValueRefName, String typeName){
+		
 		SkinAttr mSkinAttr = null;
+		
 		if(BACKGROUND.equals(attrName)){ 
 			mSkinAttr = new BackgroundAttr();
 		}else if(TEXT_COLOR.equals(attrName)){ 
 			mSkinAttr = new TextColorAttr();
 		}else if(LIST_SELECTOR.equals(attrName)){ 
 			mSkinAttr = new ListSelectorAttr();
-		}
-		else if(DIVIDER.equals(attrName)){ 
+		}else if(DIVIDER.equals(attrName)){ 
 			mSkinAttr = new DividerAttr();
-		}
-		else{
+		}else{
 			return null;
 		}
+		
 		mSkinAttr.attrName = attrName;
 		mSkinAttr.attrValueRefId = attrValueRefId;
 		mSkinAttr.attrValueRefName = attrValueRefName;
@@ -30,6 +31,12 @@ public class AttrFactory {
 		return mSkinAttr;
 	}
 	
+	/**
+	 * Check whether the attribute is supported
+	 * @param attrName
+	 * @return true : supported <br>
+	 * 		   false: not supported
+	 */
 	public static boolean isSupportedAttr(String attrName){
 		if(BACKGROUND.equals(attrName)){ 
 			return true;
