@@ -8,25 +8,18 @@
 
 ## Usage
 
-1. init skin loader in `Application`, must call `SkinManager.getInstance().init(this)` first 
+1. Init skin loader in `Application` 
 
     ```java
     public class SkinApplication extends Application {
 	
 	public void onCreate() {
 		super.onCreate();
-		
-		initSkinLoader();
-	}
-
-	/**
-	 * Must call init first
-	 */
-	private void initSkinLoader() {
+		// Must call init first 
 		SkinManager.getInstance().init(this);
 		SkinManager.getInstance().load();
 	}
-}
+    }
     ```
 
 2. tag the view that need to change skin in layout xml files
@@ -36,15 +29,12 @@
     ...
     
     <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        ...
         skin:enable="true" 
-        android:textColor="@color/color_title_bar_text"
-        android:textSize="20sp" />
+        ... />
     ```
 
-3. Extend all your Acticity from `SkinPluginActivity`
+3. Extend Acticity from `SkinPluginActivity`
 
 4. Set a custom skin from `.skin` file
     ```java
