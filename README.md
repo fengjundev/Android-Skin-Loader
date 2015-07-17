@@ -12,12 +12,12 @@
 
     ```java
 public class SkinApplication extends Application {
-	public void onCreate() {
-		super.onCreate();
-		// Must call init first 
-		SkinManager.getInstance().init(this);
-		SkinManager.getInstance().load();
-	}
+	    public void onCreate() {
+	    	    super.onCreate();
+		    // Must call init first 
+		    SkinManager.getInstance().init(this);
+		    SkinManager.getInstance().load();
+ 	    }
 }
     ```
 
