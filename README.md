@@ -1,9 +1,6 @@
 # Android-Skin-Loader
 
 > Contact me : fengjun.dev@gmail.com
-
----
-
 > A skin manager load skin from local file dynamically.  
 > Now support background , text color , list divider and list selector
 
