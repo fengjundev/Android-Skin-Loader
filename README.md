@@ -21,7 +21,7 @@ public class SkinApplication extends Application {
 }
     ```
 
-2. tag the view that need to change skin in layout xml files
+2. Tag the view that need to change skin in layout xml files
     ```xml
     ...
     xmlns:skin="http://schemas.android.com/android/skin"
