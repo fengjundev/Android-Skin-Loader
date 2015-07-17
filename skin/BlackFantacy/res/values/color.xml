@@ -7,7 +7,7 @@
     <color name="color_new_item_bg">#003333</color>
     <color name="color_new_item_title">#ffffff</color>
     <color name="color_new_item_synopsis">#CCFFCC</color>
-    <color name="color_new_list_divider">#336633</color>
+    <color name="color_new_list_divider">#ffffff</color>
 
     <drawable name="color_news_item_normal">#003333</drawable>
     <drawable name="color_news_item_pressed">#11ffffff</drawable>

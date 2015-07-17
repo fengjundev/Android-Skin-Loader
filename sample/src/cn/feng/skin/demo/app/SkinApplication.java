@@ -11,6 +11,9 @@ public class SkinApplication extends Application {
 		initSkinLoader();
 	}
 
+	/**
+	 * Must call init first
+	 */
 	private void initSkinLoader() {
 		SkinManager.getInstance().init(this);
 		SkinManager.getInstance().load();

@@ -21,7 +21,7 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 	/**
 	 * Whether response to skin changing after create
 	 */
-	private boolean isResponseOnSkinChanging			= true;
+	private boolean isResponseOnSkinChanging = true;
 	
 	private SkinInflaterFactory mSkinInflaterFactory;
 	
@@ -51,7 +51,7 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 	 * @param attrName
 	 * @param attrValueResId
 	 */
-	protected void addNewSkinWidget(View view, String attrName, int attrValueResId){	
+	protected void dynamicAddNewSkinWidget(View view, String attrName, int attrValueResId){	
 		// developing ... 
 	}
 	
@@ -62,9 +62,6 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 	@Override
 	public void onThemeUpdate() {
 		if(!isResponseOnSkinChanging) return;
-		
-		L.e("call onThemeUpdate()"); 
-		
 		mSkinInflaterFactory.applySkin();
 	}
 }

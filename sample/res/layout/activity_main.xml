@@ -19,6 +19,7 @@
         android:cacheColorHint="#00000000"
         android:divider="@color/color_new_list_divider"
         android:dividerHeight="1dp"
+        skin:enable="true" 
         android:listSelector="@drawable/news_item_selector"
         android:scrollbars="none" />
 

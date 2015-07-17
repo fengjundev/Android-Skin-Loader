@@ -17,7 +17,11 @@ import cn.feng.skin.manager.util.L;
 
 public class SettingActivity extends SkinPluginActivity {
 
-	private static final String SKIN_NAME = "autumn.skin";
+	/**
+	 * Put this skin file on the root of sdcard 
+	 * /mnt/sdcard/BlackFantacy.skin
+	 */
+	private static final String SKIN_NAME = "BlackFantacy.skin";
 	private static final String SKIN_DIR = Environment
 			.getExternalStorageDirectory() + File.separator + SKIN_NAME;
 	
@@ -47,9 +51,9 @@ public class SettingActivity extends SkinPluginActivity {
 		
 		if(isOfficalSelected){
 			setOfficalSkinBtn.setText("官方默认(当前)");
-			setNightSkinBtn.setText("夜间模式");
+			setNightSkinBtn.setText("黑色幻想");
 		}else{
-			setNightSkinBtn.setText("夜间模式(当前)");
+			setNightSkinBtn.setText("黑色幻想(当前)");
 			setOfficalSkinBtn.setText("官方默认");			
 		}
 		
@@ -75,7 +79,7 @@ public class SettingActivity extends SkinPluginActivity {
 			SkinManager.getInstance().restoreDefaultTheme();
 			Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();			
 			setOfficalSkinBtn.setText("官方默认(当前)");
-			setNightSkinBtn.setText("夜间模式");
+			setNightSkinBtn.setText("黑色幻想");
 			isOfficalSelected = true;
 		}
 	}
@@ -96,7 +100,7 @@ public class SettingActivity extends SkinPluginActivity {
 					public void onSuccess() {
 						L.e("loadSkinSuccess");
 						Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();
-						setNightSkinBtn.setText("夜间模式(当前)");
+						setNightSkinBtn.setText("黑色幻想(当前)");
 						setOfficalSkinBtn.setText("官方默认");		
 						isOfficalSelected = false;
 					}

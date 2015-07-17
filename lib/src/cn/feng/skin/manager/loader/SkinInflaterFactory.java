@@ -113,7 +113,7 @@ public class SkinInflaterFactory implements Factory {
 			String attrName = attrs.getAttributeName(i);
 			String attrValue = attrs.getAttributeValue(i);
 			
-			if(!"background".equals(attrName)){
+			if(!AttrFactory.isSupportedAttr(attrName)){
 				continue;
 			}
 			

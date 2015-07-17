@@ -46,6 +46,6 @@
         android:layout_height="1dp"
         android:layout_below="@id/set_night_skin"
         skin:enable="true" 
-        android:background="#efefef" />
+        android:background="@color/color_new_list_divider" />
 
 </RelativeLayout>
