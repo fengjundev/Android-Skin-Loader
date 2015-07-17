@@ -11,8 +11,7 @@
 1. Init skin loader in `Application` 
 
     ```java
-    public class SkinApplication extends Application {
-	
+public class SkinApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		// Must call init first 
