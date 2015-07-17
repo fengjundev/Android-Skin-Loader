@@ -36,20 +36,13 @@ public class MainActivity extends SkinPluginActivity{
 		
 		initData();
 		initView();
-		
-		View vv = settingBtn;
-		if(vv instanceof TextView){
-			L.w("sss", "ok");
-		}else{
-			L.w("sss", "no");
-		}
 	}
 
 	private void initData() {
 		datas = new ArrayList<News>();
 		for(int i = 0;i < 10; i++){
 			News news = new News();
-			news.content = "一段依赖关系的建立,就意味着这段关系有其终点.生老病死,悲欢离合,这是每个人的天命,我们逗无法逃避";
+			news.content = "Always listen to your heart because even though it's on your left side, it's always right.";
 			news.title = "每日随笔";
 			datas.add(news);
 		}
