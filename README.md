@@ -7,8 +7,8 @@
 
 
 ## 演示
-#### 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/apk),将`BlackFantacy.skin`放在SD卡根目录
-#### 效果图
+#### 1. 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/apk),将`BlackFantacy.skin`放在SD卡根目录
+#### 2. 效果图
 ![sample](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/screenshot.png)
 
 
@@ -17,12 +17,12 @@
 #### 1. 在`Application`中进行初始化
 ```java
 public class SkinApplication extends Application {
-	    public void onCreate() {
-	            super.onCreate();
-		    // Must call init first 
-		    SkinManager.getInstance().init(this);
-		    SkinManager.getInstance().load();
- 	    }
+	public void onCreate() {
+		super.onCreate();
+		// Must call init first 
+		SkinManager.getInstance().init(this);
+		SkinManager.getInstance().load();
+	}
 }
 ```
 
