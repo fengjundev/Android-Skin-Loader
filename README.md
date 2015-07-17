@@ -4,7 +4,6 @@
 > A skin manager load skin from local file dynamically.  
 > Now support background , text color , list divider and list selector
 
----
 
 ## Usage
 
@@ -29,10 +28,22 @@
 }
     ```
 
-2. tag the view that need to change skin in layout xml files, with `skin:enable="true"` , remember the namespace `xmlns:skin="http://schemas.android.com/android/skin"`
+2. tag the view that need to change skin in layout xml files
+    ```xml
+    ...
+    xmlns:skin="http://schemas.android.com/android/skin"
+    ...
+    
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        skin:enable="true" 
+        android:textColor="@color/color_title_bar_text"
+        android:textSize="20sp" />
+    ```
 
 3. Extend all your Acticity from `SkinPluginActivity`
-
 
 4. Set a custom skin from `.skin` file
     ```java
@@ -63,25 +74,22 @@ SkinManager.getInstance().load(skin.getAbsolutePath(),
 
 ---
 
-## Sample
+## Sample screenshot
 
+- screenshot-1
 ![sample-1](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/1.png)
   
-  
+- screenshot-2
 ![sample-2](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/2.png)
 
-
-
+- screenshot-3
 ![sample-3](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/3.png)
 
-
-
+- screenshot-4
 ![sample-4](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/4.png)
 
-
-
+- screenshot-5
 ![sample-5](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/5.png)
 
-
-
+- screenshot-6
 ![sample-5](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/6.png)
