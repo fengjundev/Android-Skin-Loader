@@ -1,16 +1,22 @@
-# Android-Skin-Loader
+# Android-Skin-Loader 
 
-> Contact me : fengjun.dev@gmail.com
+> 任何问题,请联系我 : fengjun.dev@gmail.com
 >
-> A skin manager load skin from local file dynamically.  
-> Now support background , text color , list divider and list selector
+> 一个通过动态加载本地皮肤包进行换肤的皮肤框架
 
 
-## Usage
 
-1. Init skin loader in `Application` 
+## 演示
+#### 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/apk),将`BlackFantacy.skin`放在SD卡根目录
+#### 效果图
+![sample](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/screenshot.png)
 
-    ```java
+
+## 用法
+
+#### 在`Application`中进行初始化
+
+```java
 public class SkinApplication extends Application {
 	    public void onCreate() {
 	            super.onCreate();
@@ -19,10 +25,11 @@ public class SkinApplication extends Application {
 		    SkinManager.getInstance().load();
  	    }
 }
-    ```
+```
 
-2. Tag the view that need to change skin in layout xml files
-    ```xml
+#### 在布局文件中标识需要换肤的View
+
+```xml
     ...
     xmlns:skin="http://schemas.android.com/android/skin"
     ...
@@ -31,12 +38,12 @@ public class SkinApplication extends Application {
         ...
         skin:enable="true" 
         ... />
-    ```
+```
 
-3. Extend Acticity from `SkinPluginActivity`
+#### 继承`SkinPluginActivity`作为BaseActivity进行开发
 
-4. Set a custom skin from `.skin` file
-    ```java
+#### 从`.skin`文件中设置皮肤
+```java
 String SKIN_NAME = "BlackFantacy.skin";
 String SKIN_DIR = Environment.getExternalStorageDirectory() + File.separator + SKIN_NAME;
 File skin = new File(SKIN_DIR);
@@ -54,9 +61,9 @@ SkinManager.getInstance().load(skin.getAbsolutePath(),
 					public void onFailed() {
 					}
 				});
-    ```
+```
 
-5. Restore to default skin
+#### 重设默认皮肤
 
     ```java
     SkinManager.getInstance().restoreDefaultTheme();
@@ -64,22 +71,5 @@ SkinManager.getInstance().load(skin.getAbsolutePath(),
 
 ---
 
-## Sample screenshot
+## 注意
 
-- screenshot-1
-![sample-1](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/1.png)
-  
-- screenshot-2
-![sample-2](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/2.png)
-
-- screenshot-3
-![sample-3](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/3.png)
-
-- screenshot-4
-![sample-4](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/4.png)
-
-- screenshot-5
-![sample-5](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/5.png)
-
-- screenshot-6
-![sample-5](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/6.png)
