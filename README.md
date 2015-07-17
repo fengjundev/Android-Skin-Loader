@@ -1,6 +1,6 @@
 # Android-Skin-Loader 
 
-> 任何问题,请联系我 : fengjun.dev@gmail.com
+> 联系我 : fengjun.dev@gmail.com
 >
 > 一个通过动态加载本地皮肤包进行换肤的皮肤框架
 
@@ -67,6 +67,4 @@ SkinManager.getInstance().load(skin.getAbsolutePath(),
 ```java
 SkinManager.getInstance().restoreDefaultTheme();
 ```
-
-## 注意
 
