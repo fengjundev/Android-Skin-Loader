@@ -15,7 +15,6 @@
 ## 用法
 
 #### 在`Application`中进行初始化
-
 ```java
 public class SkinApplication extends Application {
 	    public void onCreate() {
@@ -30,18 +29,18 @@ public class SkinApplication extends Application {
 #### 在布局文件中标识需要换肤的View
 
 ```xml
-    ...
-    xmlns:skin="http://schemas.android.com/android/skin"
-    ...
-    
-    <TextView
-        ...
-        skin:enable="true" 
-        ... />
+...
+xmlns:skin="http://schemas.android.com/android/skin"
+...
+  <TextView
+     ...
+     skin:enable="true" 
+     ... />
 ```
 
 #### 继承`SkinPluginActivity`作为BaseActivity进行开发
-
+  
+  
 #### 从`.skin`文件中设置皮肤
 ```java
 String SKIN_NAME = "BlackFantacy.skin";
@@ -63,13 +62,11 @@ SkinManager.getInstance().load(skin.getAbsolutePath(),
 				});
 ```
 
+
 #### 重设默认皮肤
-
-    ```java
-    SkinManager.getInstance().restoreDefaultTheme();
-    ```
-
----
+```java
+SkinManager.getInstance().restoreDefaultTheme();
+```
 
 ## 注意
 
