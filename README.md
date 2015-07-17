@@ -13,7 +13,7 @@
     ```java
 public class SkinApplication extends Application {
 	    public void onCreate() {
-	    	    super.onCreate();
+	            super.onCreate();
 		    // Must call init first 
 		    SkinManager.getInstance().init(this);
 		    SkinManager.getInstance().load();
