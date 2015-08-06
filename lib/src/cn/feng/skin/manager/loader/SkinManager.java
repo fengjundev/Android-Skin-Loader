@@ -21,10 +21,15 @@ import cn.feng.skin.manager.listener.ISkinUpdate;
 
 /**
  * Skin Manager Instance
+ *
  * 
  * <ul>
+ * <strong>global init skin manager, MUST BE CALLED FIRST ! </strong>
+ * <li> {@link #init()} </li>
+ * </ul>
+ * <ul>
  * <strong>get single runtime instance</strong>
- * <li> {@link #getInstance(Context)} </li>
+ * <li> {@link #getInstance()} </li>
  * </ul>
  * <ul>
  * <strong>attach a listener (Activity or fragment) to SkinManager</strong>
@@ -60,14 +65,26 @@ public class SkinManager implements ISkinLoader{
 	private String 						skinPath;
 	private boolean						isDefaultSkin			= false;
 	
+	/**
+	 * whether the skin being used is from external .skin file 
+	 * @return
+	 */
 	public boolean isExternalSkin(){
 		return !isDefaultSkin && mResources != null;
 	}
 	
+	/**
+	 * get present skin path
+	 * @return
+	 */
 	public String getSkinPath() {
 		return skinPath;
 	}
 
+	/**
+	 * return a global static instance of {@link SkinManager}
+	 * @return
+	 */
 	public static SkinManager getInstance() {
 		if (instance == null) {
 			synchronized (synchronizedLock) {
@@ -87,8 +104,7 @@ public class SkinManager implements ISkinLoader{
 		return mResources;
 	}
 	
-	private SkinManager() {
-	}
+	private SkinManager() { }
 	
 	public void init(Context ctx){
 		context = ctx.getApplicationContext();

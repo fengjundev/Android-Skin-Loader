@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.feng.skin.demo.R;
-import cn.feng.skin.manager.base.SkinPluginActivity;
+import cn.feng.skin.manager.base.BaseActivity;
 import cn.feng.skin.manager.listener.ILoaderListener;
 import cn.feng.skin.manager.loader.SkinManager;
 import cn.feng.skin.manager.util.L;
 
-public class SettingActivity extends SkinPluginActivity {
+public class SettingActivity extends BaseActivity {
 
 	/**
 	 * Put this skin file on the root of sdcard 

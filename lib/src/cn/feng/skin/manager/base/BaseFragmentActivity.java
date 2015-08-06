@@ -1,22 +1,24 @@
 package cn.feng.skin.manager.base;
 
-import android.app.Activity;
+import java.lang.reflect.Field;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import cn.feng.skin.manager.listener.ISkinUpdate;
 import cn.feng.skin.manager.loader.SkinInflaterFactory;
 import cn.feng.skin.manager.loader.SkinManager;
-import cn.feng.skin.manager.util.L;
 
 /**
- * Base Activity for development
+ * Base Fragment Activity for development
  * 
  * <p>NOTICE:<br> 
  * You should extends from this if you what to do skin change
  * 
  * @author fengjun
  */
-public class SkinPluginActivity extends Activity implements ISkinUpdate{
+public class BaseFragmentActivity extends FragmentActivity implements ISkinUpdate{
 	
 	/**
 	 * Whether response to skin changing after create
@@ -28,8 +30,23 @@ public class SkinPluginActivity extends Activity implements ISkinUpdate{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mSkinInflaterFactory = new SkinInflaterFactory();
-		getLayoutInflater().setFactory(mSkinInflaterFactory);
+	
+        try { 
+            Field field = LayoutInflater.class.getDeclaredField("mFactorySet");
+            field.setAccessible(true);
+            field.setBoolean(getLayoutInflater(), false);
+            
+    		mSkinInflaterFactory = new SkinInflaterFactory();
+    		getLayoutInflater().setFactory(mSkinInflaterFactory);
+    		
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } 
+		
 	}
 	
 	@Override
