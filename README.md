@@ -1,6 +1,6 @@
 # Android-Skin-Loader 
 
-> 联系我 : fengjun.dev@gmail.com
+> Contact Me : fengjun.dev@gmail.com
 >
 > 一个通过动态加载本地皮肤包进行换肤的皮肤框架
 
@@ -38,7 +38,7 @@ xmlns:skin="http://schemas.android.com/android/skin"
      ... />
 ```
 
-#### 3. 继承`SkinPluginActivity`作为BaseActivity进行开发
+#### 3. 继承`BaseActivity`或者`BaseFragmentActivity`作为BaseActivity进行开发
   
   
 #### 4. 从`.skin`文件中设置皮肤
