@@ -1,3 +1,5 @@
+[![Android Gems](http://www.android-gems.com/badge/fengjundev/Android-Skin-Loader.svg?branch=master)](http://www.android-gems.com/lib/fengjundev/Android-Skin-Loader)
+
 # Android-Skin-Loader 
 
 > Contact Me : fengjun.dev@gmail.com
