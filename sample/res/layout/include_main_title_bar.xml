@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:skin="http://schemas.android.com/android/skin"
+    android:id="@+id/title_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:clickable="false"
@@ -14,6 +15,7 @@
         android:layout_centerInParent="true"
         android:text="每日新闻"
         skin:enable="true" 
+        android:visibility="gone"
         android:textColor="@color/color_title_bar_text"
         android:textSize="20sp" />
 

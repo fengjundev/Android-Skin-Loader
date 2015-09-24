@@ -1,8 +1,12 @@
 package cn.feng.skin.manager.base;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import cn.feng.skin.manager.entity.DynamicAttr;
+import cn.feng.skin.manager.listener.IDynamicNewView;
 import cn.feng.skin.manager.listener.ISkinUpdate;
 import cn.feng.skin.manager.loader.SkinInflaterFactory;
 import cn.feng.skin.manager.loader.SkinManager;
@@ -15,7 +19,7 @@ import cn.feng.skin.manager.loader.SkinManager;
  * 
  * @author fengjun
  */
-public class BaseActivity extends Activity implements ISkinUpdate{
+public class BaseActivity extends Activity implements ISkinUpdate, IDynamicNewView{
 	
 	/**
 	 * Whether response to skin changing after create
@@ -41,6 +45,7 @@ public class BaseActivity extends Activity implements ISkinUpdate{
 	protected void onDestroy() {
 		super.onDestroy();
 		SkinManager.getInstance().detach(this);
+		mSkinInflaterFactory.clean();
 	}
 	
 	/**
@@ -50,8 +55,12 @@ public class BaseActivity extends Activity implements ISkinUpdate{
 	 * @param attrName
 	 * @param attrValueResId
 	 */
-	protected void dynamicAddNewSkinWidget(View view, String attrName, int attrValueResId){	
-		// developing ... 
+	protected void dynamicAddSkinEnableView(View view, String attrName, int attrValueResId){	
+		mSkinInflaterFactory.dynamicAddSkinEnableView(this, view, attrName, attrValueResId);
+	}
+	
+	protected void dynamicAddSkinEnableView(View view, List<DynamicAttr> pDAttrs){	
+		mSkinInflaterFactory.dynamicAddSkinEnableView(this, view, pDAttrs);
 	}
 	
 	final protected void enableResponseOnSkinChanging(boolean enable){
@@ -60,7 +69,14 @@ public class BaseActivity extends Activity implements ISkinUpdate{
 
 	@Override
 	public void onThemeUpdate() {
-		if(!isResponseOnSkinChanging) return;
+		if(!isResponseOnSkinChanging){
+			return;
+		}
 		mSkinInflaterFactory.applySkin();
+	}
+
+	@Override
+	public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
+		mSkinInflaterFactory.dynamicAddSkinEnableView(this, view, pDAttrs);
 	}
 }

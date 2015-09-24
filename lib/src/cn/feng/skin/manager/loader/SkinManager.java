@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,11 +14,11 @@ import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import cn.feng.skin.manager.config.SkinConfig;
 import cn.feng.skin.manager.listener.ILoaderListener;
 import cn.feng.skin.manager.listener.ISkinLoader;
 import cn.feng.skin.manager.listener.ISkinUpdate;
+import cn.feng.skin.manager.util.L;
 
 /**
  * Skin Manager Instance
@@ -54,28 +55,28 @@ import cn.feng.skin.manager.listener.ISkinUpdate;
  */
 public class SkinManager implements ISkinLoader{
 	
-	private static final String 		NOT_INIT_ERROR			= "SkinManager MUST init with Context first";
-	private static Object    			synchronizedLock    	= new Object();
-	private static SkinManager 			instance;
-	
-	private List<ISkinUpdate>   		skinObservers;
-	private Context 					context;
-	private String 						skinPackageName;
-	private Resources 					mResources;
-	private String 						skinPath;
-	private boolean						isDefaultSkin			= false;
+	private static final String NOT_INIT_ERROR = "SkinManager MUST init with Context first";
+	private static Object synchronizedLock = new Object();
+	private static SkinManager instance;
+
+	private List<ISkinUpdate> skinObservers;
+	private Context context;
+	private String skinPackageName;
+	private Resources mResources;
+	private String skinPath;
+	private boolean isDefaultSkin = false;
 	
 	/**
 	 * whether the skin being used is from external .skin file 
-	 * @return
+	 * @return is external skin = true
 	 */
 	public boolean isExternalSkin(){
 		return !isDefaultSkin && mResources != null;
 	}
 	
 	/**
-	 * get present skin path
-	 * @return
+	 * get current skin path
+	 * @return current skin path
 	 */
 	public String getSkinPath() {
 		return skinPath;
@@ -240,6 +241,7 @@ public class SkinManager implements ISkinLoader{
 		return trueColor;
 	}
 	
+	@SuppressLint("NewApi")
 	public Drawable getDrawable(int resId){
 		Drawable originDrawable = context.getResources().getDrawable(resId);
 		if(mResources == null || isDefaultSkin){
@@ -251,7 +253,12 @@ public class SkinManager implements ISkinLoader{
 		
 		Drawable trueDrawable = null;
 		try{
-			trueDrawable = mResources.getDrawable(trueResId);
+			L.e("ttgg", "SDK_INT = " + android.os.Build.VERSION.SDK_INT);
+			if(android.os.Build.VERSION.SDK_INT < 22){
+				trueDrawable = mResources.getDrawable(trueResId);
+			}else{
+				trueDrawable = mResources.getDrawable(trueResId, null);
+			}
 		}catch(NotFoundException e){
 			e.printStackTrace();
 			trueDrawable = originDrawable;

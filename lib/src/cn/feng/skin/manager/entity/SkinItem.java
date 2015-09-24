@@ -18,9 +18,20 @@ public class SkinItem {
 	}
 	
 	public void apply(){
-		if(ListUtils.isEmpty(attrs)) return;
+		if(ListUtils.isEmpty(attrs)){
+			return;
+		}
 		for(SkinAttr at : attrs){
 			at.apply(view);
+		}
+	}
+	
+	public void clean(){
+		if(ListUtils.isEmpty(attrs)){
+			return;
+		}
+		for(SkinAttr at : attrs){
+			at = null;
 		}
 	}
 

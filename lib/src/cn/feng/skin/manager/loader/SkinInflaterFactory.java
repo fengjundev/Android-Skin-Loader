@@ -5,12 +5,14 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.LayoutInflater.Factory;
 import android.view.View;
 import cn.feng.skin.manager.config.SkinConfig;
 import cn.feng.skin.manager.entity.AttrFactory;
+import cn.feng.skin.manager.entity.DynamicAttr;
 import cn.feng.skin.manager.entity.SkinAttr;
 import cn.feng.skin.manager.entity.SkinItem;
 import cn.feng.skin.manager.util.L;
@@ -34,20 +36,15 @@ public class SkinInflaterFactory implements Factory {
 	
 	@Override
 	public View onCreateView(String name, Context context, AttributeSet attrs) {
-	
-		L.e("tgtg",name); 
-		
 		// if this is NOT enable to be skined , simplly skip it 
 		boolean isSkinEnable = attrs.getAttributeBooleanValue(SkinConfig.NAMESPACE, SkinConfig.ATTR_SKIN_ENABLE, false);
         if (!isSkinEnable){
-        	L.e(name + " is Not skin able , skin it !"); 
-        	return null;
+        		return null;
         }
 		
 		View view = createView(context, name, attrs);
 		
 		if (view == null){
-			L.e(name + " is NULL !"); 
 			return null;
 		}
 		
@@ -68,10 +65,6 @@ public class SkinInflaterFactory implements Factory {
      * @return View The newly instantiated view, or null.
      */
 	private View createView(Context context, String name, AttributeSet attrs) {
-		long start;
-		if(DEBUG){ 
-			start = System.currentTimeMillis();
-		}
 		View view = null;
 		try {
 			if (-1 == name.indexOf('.')){
@@ -88,12 +81,9 @@ public class SkinInflaterFactory implements Factory {
 	            view = LayoutInflater.from(context).createView(name, null, attrs);
 	        }
 		} catch (Exception e) { 
-			L.e("error while create " + name);
-			L.e(e.getMessage());
+			L.e("error while create " + name + " : " + e.getMessage());
+			view = null;
 		}
-		if (DEBUG) {
-    		L.e("createView " + name + " cost [" + (System.currentTimeMillis() - start) + "] ms"); 
-        }
 		return view;
 	}
 
@@ -105,11 +95,6 @@ public class SkinInflaterFactory implements Factory {
 	 * @param view
 	 */
 	private void parseSkinAttr(Context context, AttributeSet attrs, View view) {
-		long start;
-		if(DEBUG){ 
-			start = System.currentTimeMillis();
-		}
-		
 		List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();
 		
 		for (int i = 0; i < attrs.getAttributeCount(); i++){
@@ -121,20 +106,19 @@ public class SkinInflaterFactory implements Factory {
 			}
 			
 		    if(attrValue.startsWith("@")){
-		    	try{ 
-		    		int id = Integer.parseInt(attrValue.substring(1));
-		    		String entryName = context.getResources().getResourceEntryName(id);
-		    		String typeName = context.getResources().getResourceTypeName(id);
-		    		context.getResources().getResourceTypeName(id);
-		    		SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
-		    		if(mSkinAttr != null){
-		    			viewAttrs.add(mSkinAttr);
-		    		}
-		    	}catch(NumberFormatException e){
-		    		e.printStackTrace();
-		    	}catch(NotFoundException e){
-		    		e.printStackTrace();
-		    	}
+				try {
+					int id = Integer.parseInt(attrValue.substring(1));
+					String entryName = context.getResources().getResourceEntryName(id);
+					String typeName = context.getResources().getResourceTypeName(id);
+					SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
+					if (mSkinAttr != null) {
+						viewAttrs.add(mSkinAttr);
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+				}
 		    }
 		}
 		
@@ -142,29 +126,72 @@ public class SkinInflaterFactory implements Factory {
 			SkinItem skinItem = new SkinItem();
 			skinItem.view = view;
 			skinItem.attrs = viewAttrs;
-			if(DEBUG){ 
-	    		L.w("successful add a item \n" + viewAttrs.toString()); 
-	    	} 
+
 			mSkinItems.add(skinItem);
 			
 			if(SkinManager.getInstance().isExternalSkin()){
 				skinItem.apply();
 			}
-		}else{
-			L.e("attr is empty " + view.getClass().getSimpleName());
 		}
-		
-		if (DEBUG) {
-    		L.e("parseSkinAttr " + view.getClass().getSimpleName() + " cost [" + (System.currentTimeMillis() - start) + "] ms"); 
-        }
 	}
 	
 	public void applySkin(){
-		if(ListUtils.isEmpty(mSkinItems)) return;
+		if(ListUtils.isEmpty(mSkinItems)){
+			return;
+		}
 		
 		for(SkinItem si : mSkinItems){
-			if(si.view == null) continue;
+			if(si.view == null){
+				continue;
+			}
 			si.apply();
+		}
+	}
+	
+	public void dynamicAddSkinEnableView(Context context, View view, List<DynamicAttr> pDAttrs){	
+		List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();
+		SkinItem skinItem = new SkinItem();
+		skinItem.view = view;
+		
+		for(DynamicAttr dAttr : pDAttrs){
+			int id = dAttr.refResId;
+			String entryName = context.getResources().getResourceEntryName(id);
+			String typeName = context.getResources().getResourceTypeName(id);
+			SkinAttr mSkinAttr = AttrFactory.get(dAttr.attrName, id, entryName, typeName);
+			viewAttrs.add(mSkinAttr);
+		}
+		
+		skinItem.attrs = viewAttrs;
+		addSkinView(skinItem);
+	}
+	
+	public void dynamicAddSkinEnableView(Context context, View view, String attrName, int attrValueResId){	
+		int id = attrValueResId;
+		String entryName = context.getResources().getResourceEntryName(id);
+		String typeName = context.getResources().getResourceTypeName(id);
+		SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
+		SkinItem skinItem = new SkinItem();
+		skinItem.view = view;
+		List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();
+		viewAttrs.add(mSkinAttr);
+		skinItem.attrs = viewAttrs;
+		addSkinView(skinItem);
+	}
+	
+	public void addSkinView(SkinItem item){
+		mSkinItems.add(item);
+	}
+	
+	public void clean(){
+		if(ListUtils.isEmpty(mSkinItems)){
+			return;
+		}
+		
+		for(SkinItem si : mSkinItems){
+			if(si.view == null){
+				continue;
+			}
+			si.clean();
 		}
 	}
 }
