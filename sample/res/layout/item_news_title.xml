@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         skin:enable="true" 
-        android:textColor="@color/color_new_item_title"
+        android:textColor="@color/news_item_text_color_selector"
         android:textSize="20sp" />
     
    <TextView
@@ -25,7 +25,7 @@
         android:maxLines="3"
         skin:enable="true" 
         android:ellipsize="end"
-        android:textColor="@color/color_new_item_title"
+        android:textColor="@color/news_item_text_color_selector"
         android:textSize="16sp" />
 
 </RelativeLayout>

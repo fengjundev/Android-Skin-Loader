@@ -7,6 +7,7 @@
     
     <color name="color_new_item_bg">#003333</color>
     <color name="color_new_item_title">#fffed6</color>
+    <color name="color_new_item_title_pressed">#ffffff</color>
     <color name="color_new_item_synopsis">#CCFFCC</color>
     <color name="color_new_list_divider">#115eeb98</color>
 

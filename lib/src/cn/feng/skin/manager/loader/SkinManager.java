@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
@@ -265,5 +266,61 @@ public class SkinManager implements ISkinLoader{
 		}
 		
 		return trueDrawable;
+	}
+	
+	/**
+	 * 加载指定资源颜色drawable,转化为ColorStateList，保证selector类型的Color也能被转换。</br>
+	 * 无皮肤包资源返回默认主题颜色
+	 * @author pinotao
+	 * @param resId
+	 * @return
+	 */
+	public ColorStateList convertToColorStateList(int resId) {
+		L.e("attr1", "convertToColorStateList");
+		
+		boolean isExtendSkin = true;
+		
+		if (mResources == null || isDefaultSkin) {
+			isExtendSkin = false;
+		}
+		
+		String resName = context.getResources().getResourceEntryName(resId);
+		L.e("attr1", "resName = " + resName);
+		if (isExtendSkin) {
+			L.e("attr1", "isExtendSkin");
+			int trueResId = mResources.getIdentifier(resName, "color", skinPackageName);
+			L.e("attr1", "trueResId = " + trueResId);
+			ColorStateList trueColorList = null;
+			if (trueResId == 0) { // 如果皮肤包没有复写该资源，但是需要判断是否是ColorStateList
+				try {
+					ColorStateList originColorList = context.getResources().getColorStateList(resId);
+					return originColorList;
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+					L.e("resName = " + resName + " NotFoundException : "+ e.getMessage());
+				}
+			} else {
+				try {
+					trueColorList = mResources.getColorStateList(trueResId);
+					L.e("attr1", "trueColorList = " + trueColorList);
+					return trueColorList;
+				} catch (NotFoundException e) {
+					e.printStackTrace();
+					L.w("resName = " + resName + " NotFoundException :" + e.getMessage());
+				}
+			}
+		} else {
+			try {
+				ColorStateList originColorList = context.getResources().getColorStateList(resId);
+				return originColorList;
+			} catch (NotFoundException e) {
+				e.printStackTrace();
+				L.w("resName = " + resName + " NotFoundException :" + e.getMessage());
+			}
+
+		}
+
+		int[][] states = new int[1][1];
+		return new ColorStateList(states, new int[] { context.getResources().getColor(resId) });
 	}
 }
