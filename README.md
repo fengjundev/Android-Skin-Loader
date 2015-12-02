@@ -23,7 +23,7 @@ Android-Skin-Loader
 ## 演示
 #### 1. 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/apk), 将`BlackFantacy.skin`放在SD卡根目录
 #### 2. 效果图
-![sample](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/sample/image/screenshot.png)
+![sample](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/eclipse_version/sample/image/screenshot.png)
 
 
 ## 用法
@@ -134,5 +134,4 @@ public interface IDynamicNewView {
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
 
