@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android-skin-loader-lib" />
             <option value="$PROJECT_DIR$/android-skin-loader-sample" />
+            <option value="$PROJECT_DIR$/android-skin-loader-skin" />
           </set>
         </option>
         <option name="myModules">
@@ -19,6 +20,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android-skin-loader-lib" />
             <option value="$PROJECT_DIR$/android-skin-loader-sample" />
+            <option value="$PROJECT_DIR$/android-skin-loader-skin" />
           </set>
         </option>
       </GradleProjectSettings>

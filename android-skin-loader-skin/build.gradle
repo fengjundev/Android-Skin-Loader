@@ -1,11 +1,20 @@
 apply plugin: 'com.android.application'
 
+def skinName = "BlackFantacy.skin"
+
 android {
+    signingConfigs {
+        config {
+            keyAlias 'fengjun'
+            keyPassword 'fengjun'
+            storeFile file('keystore.key')
+            storePassword 'fengjun'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
-        applicationId "cn.feng.skin.demo"
+        applicationId "com.example.android_skin_laoder_skin"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -22,11 +31,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile project(':android-skin-loader-lib')
+    compile 'com.android.support:appcompat-v7:23.1.1'
 }
 
 final def TARGET_SKIN_DIR = '../apk/'
-final def SAMPLE_NAME = 'Sample.apk'
 assembleRelease.doLast {
     println("=====================assembleRelease.doLast.begin.=========================")
 
@@ -35,7 +43,7 @@ assembleRelease.doLast {
         dir.mkdirs()
     }
 
-    def f = new File(TARGET_SKIN_DIR + SAMPLE_NAME)
+    def f = new File(TARGET_SKIN_DIR + skinName)
     if (f.exists()) {
         f.delete()
     }
@@ -45,7 +53,7 @@ assembleRelease.doLast {
         into(TARGET_SKIN_DIR)
         include '*.apk'
         exclude '**/*-unaligned.apk'
-        rename ('android-skin-loader-sample-release.apk', SAMPLE_NAME)
+        rename ('android-skin-loader-skin-release.apk', skinName)
     }
 
     println("=====================assembleRelease.doLast success.=========================")
@@ -59,7 +67,7 @@ assembleDebug.doLast {
         dir.mkdirs()
     }
 
-    def f = new File(TARGET_SKIN_DIR + SAMPLE_NAME)
+    def f = new File(TARGET_SKIN_DIR + skinName)
     if (f.exists()) {
         f.delete()
     }
@@ -69,7 +77,7 @@ assembleDebug.doLast {
         into(TARGET_SKIN_DIR)
         include '*.apk'
         exclude '**/*-unaligned.apk'
-        rename ('android-skin-loader-sample-debug.apk', SAMPLE_NAME)
+        rename ('android-skin-loader-skin-debug.apk', skinName)
     }
 
     println("=====================assembleDebug.doLast success.=========================")

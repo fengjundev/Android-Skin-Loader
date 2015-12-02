@@ -34,7 +34,7 @@ public class BaseFragment extends Fragment implements IDynamicNewView{
 			mIDynamicNewView.dynamicAddView(view, pDAttrs);
 		}
 	}
-	
+
 	public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
 		LayoutInflater result = getActivity().getLayoutInflater();
 		return result;
