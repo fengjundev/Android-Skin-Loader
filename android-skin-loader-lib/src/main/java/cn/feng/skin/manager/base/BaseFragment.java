@@ -34,12 +34,7 @@ public class BaseFragment extends Fragment implements IDynamicNewView{
 			mIDynamicNewView.dynamicAddView(view, pDAttrs);
 		}
 	}
-
-	/**
-	 * @hide Hack so that DialogFragment can make its Dialog before creating
-	 * its views, and the view construction can use the dialog's context for
-	 * inflation.  Maybe this should become a public API. Note sure.
-	 */
+	
 	public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
 		LayoutInflater result = getActivity().getLayoutInflater();
 		return result;
