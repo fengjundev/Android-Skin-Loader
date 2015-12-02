@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    skin:enable="true" 
+    android:background="@color/color_app_bg" >
+
+    <include
+        android:id="@+id/title_bar_layout"
+        layout="@layout/include_detail_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none"
+        android:layout_below="@id/title_bar_layout" >
+
+        <TextView
+            android:id="@+id/detail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6sp"
+            android:layout_margin="10dp"
+            skin:enable="true" 
+            android:textSize="18sp"
+            android:textColor="@color/color_new_item_synopsis" />
+        
+    </ScrollView>
+
+</RelativeLayout>

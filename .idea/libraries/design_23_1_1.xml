@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="design-23.1.1">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/android-skin-loader-sample/build/intermediates/exploded-aar/com.android.support/design/23.1.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/android-skin-loader-sample/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/android-skin-loader-sample/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../Environment/sdk/extras/android/m2repository/com/android/support/design/23.1.1/design-23.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

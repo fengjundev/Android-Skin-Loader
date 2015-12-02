@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-Skin-Loader.iml" filepath="$PROJECT_DIR$/Android-Skin-Loader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-skin-loader-lib/android-skin-loader-lib.iml" filepath="$PROJECT_DIR$/android-skin-loader-lib/android-skin-loader-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-skin-loader-sample/android-skin-loader-sample.iml" filepath="$PROJECT_DIR$/android-skin-loader-sample/android-skin-loader-sample.iml" />
+    </modules>
+  </component>
+</project>
