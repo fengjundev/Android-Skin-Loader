@@ -21,7 +21,7 @@ Android-Skin-Loader
 
 
 ## 演示
-#### 1. 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/apk), 将`BlackFantacy.skin`放在SD卡根目录
+#### 1. 下载[demo](https://github.com/fengjundev/Android-Skin-Loader/tree/master/skin-package), 将`BlackFantacy.skin`放在SD卡根目录
 #### 2. 效果图
 ![sample](https://raw.githubusercontent.com/fengjundev/Android-Skin-Loader/master/eclipse_version/sample/image/screenshot.png)
 
