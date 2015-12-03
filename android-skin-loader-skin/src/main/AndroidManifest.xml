@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android_skin_laoder_skin">
+    package="cn.feng.skinpackage">
 
     <application
         android:allowBackup="true"
