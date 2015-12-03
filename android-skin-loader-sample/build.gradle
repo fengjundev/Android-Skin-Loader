@@ -25,7 +25,7 @@ dependencies {
     compile project(':android-skin-loader-lib')
 }
 
-final def TARGET_SKIN_DIR = '../apk/'
+final def TARGET_SKIN_DIR = '../skin-package/'
 final def SAMPLE_NAME = 'Sample.apk'
 assembleRelease.doLast {
     println("=====================assembleRelease.doLast.begin.=========================")

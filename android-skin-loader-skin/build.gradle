@@ -34,7 +34,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 }
 
-final def TARGET_SKIN_DIR = '../apk/'
+final def TARGET_SKIN_DIR = '../skin-package/'
 assembleRelease.doLast {
     println("=====================assembleRelease.doLast.begin.=========================")
 
