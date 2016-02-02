@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android-skin-loader-lib</string>
+    <string name="permission_request_failed">获取权限%s失败，无法更新皮肤插件</string>
 </resources>
