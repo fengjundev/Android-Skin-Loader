@@ -1,8 +1,14 @@
 package cn.feng.skin.manager.base;
 
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
+import com.example.android_skin_loader_lib.R;
+
+import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -34,6 +40,23 @@ public class BaseActivity extends Activity implements ISkinUpdate, IDynamicNewVi
 		super.onCreate(savedInstanceState);
 		mSkinInflaterFactory = new SkinInflaterFactory();
 		getLayoutInflater().setFactory(mSkinInflaterFactory);
+
+		PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(this, new String[]{Manifest
+				.permission.READ_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+			@Override
+			public void onGranted() {
+				SkinManager.getInstance().load();
+			}
+
+			@Override
+			public void onDenied(String permission) {
+				Toast.makeText(BaseActivity.this, String.format(getResources().getString(R.string
+						.permission_request_failed), permission), Toast
+						.LENGTH_SHORT).show();
+			}
+		});
+
+
 	}
 	
 	@Override
@@ -79,5 +102,11 @@ public class BaseActivity extends Activity implements ISkinUpdate, IDynamicNewVi
 	@Override
 	public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
 		mSkinInflaterFactory.dynamicAddSkinEnableView(this, view, pDAttrs);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		PermissionsManager.getInstance().notifyPermissionsChange(permissions,grantResults);
 	}
 }

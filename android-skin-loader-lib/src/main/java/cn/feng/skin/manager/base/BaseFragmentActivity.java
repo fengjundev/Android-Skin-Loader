@@ -1,9 +1,15 @@
 package cn.feng.skin.manager.base;
 
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
+import com.example.android_skin_loader_lib.R;
+
+import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -49,8 +55,23 @@ public class BaseFragmentActivity extends FragmentActivity implements ISkinUpdat
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } 
-		
+        }
+		PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(this, new String[]{Manifest
+				.permission.READ_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+			@Override
+			public void onGranted() {
+				SkinManager.getInstance().load();
+			}
+
+			@Override
+			public void onDenied(String permission) {
+				Toast.makeText(BaseFragmentActivity.this,String.format(getResources().getString(R.string
+						.permission_request_failed),permission),Toast
+						.LENGTH_SHORT).show();
+			}
+		});
+
+
 	}
 	
 	@Override
@@ -86,5 +107,11 @@ public class BaseFragmentActivity extends FragmentActivity implements ISkinUpdat
 	@Override
 	public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
 		mSkinInflaterFactory.dynamicAddSkinEnableView(this, view, pDAttrs);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		PermissionsManager.getInstance().notifyPermissionsChange(permissions,grantResults);
 	}
 }

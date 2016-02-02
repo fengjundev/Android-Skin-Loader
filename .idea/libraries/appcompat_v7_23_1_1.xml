@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/android-skin-loader-skin/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res" />
     </CLASSES>
     <JAVADOC />
+    <LIBRARY_FILE />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../Environment/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.1.1/appcompat-v7-23.1.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.1.1/appcompat-v7-23.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
