@@ -35,50 +35,53 @@ dependencies {
 }
 
 final def TARGET_SKIN_DIR = '../skin-package/'
-assembleRelease.doLast {
-    println("=====================assembleRelease.doLast.begin.=========================")
 
-    def dir = new File(TARGET_SKIN_DIR)
-    if (!dir.exists()) {
-        dir.mkdirs()
+gradle.projectsEvaluated {
+    assembleRelease.doLast {
+        println("=====================assembleRelease.doLast.begin.=========================")
+
+        def dir = new File(TARGET_SKIN_DIR)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+
+        def f = new File(TARGET_SKIN_DIR + skinName)
+        if (f.exists()) {
+            f.delete()
+        }
+
+        copy {
+            from('build/outputs/apk')
+            into(TARGET_SKIN_DIR)
+            include '*.apk'
+            exclude '**/*-unaligned.apk'
+            rename ('android-skin-loader-skin-release.apk', skinName)
+        }
+
+        println("=====================assembleRelease.doLast success.=========================")
     }
 
-    def f = new File(TARGET_SKIN_DIR + skinName)
-    if (f.exists()) {
-        f.delete()
+    assembleDebug.doLast {
+        println("=====================assembleDebug.doLast.begin.=========================")
+
+        def dir = new File(TARGET_SKIN_DIR)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+
+        def f = new File(TARGET_SKIN_DIR + skinName)
+        if (f.exists()) {
+            f.delete()
+        }
+
+        copy {
+            from('build/outputs/apk')
+            into(TARGET_SKIN_DIR)
+            include '*.apk'
+            exclude '**/*-unaligned.apk'
+            rename ('android-skin-loader-skin-debug.apk', skinName)
+        }
+
+        println("=====================assembleDebug.doLast success.=========================")
     }
-
-    copy {
-        from('build/outputs/apk')
-        into(TARGET_SKIN_DIR)
-        include '*.apk'
-        exclude '**/*-unaligned.apk'
-        rename ('android-skin-loader-skin-release.apk', skinName)
-    }
-
-    println("=====================assembleRelease.doLast success.=========================")
-}
-
-assembleDebug.doLast {
-    println("=====================assembleDebug.doLast.begin.=========================")
-
-    def dir = new File(TARGET_SKIN_DIR)
-    if (!dir.exists()) {
-        dir.mkdirs()
-    }
-
-    def f = new File(TARGET_SKIN_DIR + skinName)
-    if (f.exists()) {
-        f.delete()
-    }
-
-    copy {
-        from('build/outputs/apk')
-        into(TARGET_SKIN_DIR)
-        include '*.apk'
-        exclude '**/*-unaligned.apk'
-        rename ('android-skin-loader-skin-debug.apk', skinName)
-    }
-
-    println("=====================assembleDebug.doLast success.=========================")
 }
