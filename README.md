@@ -1,6 +1,7 @@
 # Android-Skin-Loader 
 
-> 联系我 : fengjun.dev@gmail.com
+> 联系我 : fengjun.dev@gmail.com  
+> 
 > 个人博客 : [http://allenfeng.com/](http://allenfeng.com/)
 >
 > 一个通过动态加载本地皮肤包进行换肤的皮肤框架
