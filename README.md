@@ -1,10 +1,23 @@
 # Android-Skin-Loader 
 
+
+
+
 > 联系我 : fengjun.dev@gmail.com  
 > 
 > 个人博客 : [http://allenfeng.com/](http://allenfeng.com/)
 >
 > 一个通过动态加载本地皮肤包进行换肤的皮肤框架
+
+
+## 广告时间：
+
+本人主讲课程：[《Android 应用程序构建实战+原理精讲》](https://coding.imooc.com/class/465.html)  
+
+深度掌握 Gradle 使用，系统性学习 Android 应用构建知识。欢迎学习～
+
+![](https://tva1.sinaimg.cn/large/008eGmZEgy1gnu03ontfuj31gu0oqwt4.jpg)
+
 
 ## 更新日志
 - 导入到Android Studio，使用gradle构建皮肤包（见`7. 皮肤包是什么？如何生成？`）(2015-12-02)
