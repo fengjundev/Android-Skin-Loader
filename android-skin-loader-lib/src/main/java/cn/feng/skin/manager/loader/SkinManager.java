@@ -265,6 +265,11 @@ public class SkinManager implements ISkinLoader{
 			trueDrawable = originDrawable;
 		}
 		
+		//fix for Vivo mobile phones rom that don't throw NotFoundException when the resources not found
+		if(trueDrawable == null){
+			trueDrawable = originDrawable;
+		}
+		
 		return trueDrawable;
 	}
 	
