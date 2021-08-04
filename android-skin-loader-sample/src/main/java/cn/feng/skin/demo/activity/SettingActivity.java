@@ -9,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import cn.feng.skin.demo.R;
 import cn.feng.skin.manager.base.BaseActivity;
@@ -91,9 +94,31 @@ public class SettingActivity extends BaseActivity {
 		
 		File skin = new File(SKIN_DIR);
 
-		if(skin == null || !skin.exists()){
-			Toast.makeText(getApplicationContext(), "请检查" + SKIN_DIR + "是否存在", Toast.LENGTH_SHORT).show();
-			return;
+		if(!skin.exists()){
+			InputStream is = null;
+			FileOutputStream fos = null;
+			try {
+				is = getResources().getAssets().open(SKIN_NAME);
+				fos = new FileOutputStream(SKIN_DIR);
+				int bytesRead = 0;
+				byte[] buffer = new byte[1024 * 4];
+				while ((bytesRead = is.read(buffer, 0, 1024 * 4)) != -1) {
+					fos.write(buffer, 0, bytesRead);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if (is != null){
+						is.close();
+					}
+					if (fos != null){
+						fos.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 		SkinManager.getInstance().load(skin.getAbsolutePath(),

@@ -24,3 +24,5 @@ proguard/
 
 # Log Files
 *.log
+.idea
+Android-Skin-Loader.iml
